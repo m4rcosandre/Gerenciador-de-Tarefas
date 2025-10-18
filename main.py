@@ -18,14 +18,9 @@ def carregar_tarefas():
             print(f"Erro ao carregar dados : {ex}. Iniciando lista vazia")
             tarefas = []
 
-
-def salvar_tarefas():
-    with open(ARQUIVOS_DADOS, "w") as file:
-        json.dump(tarefas, file, indent=4)
-    print(f"Tarefas salvas em {ARQUIVOS_DADOS}")
-
-
 # Função para adicionar tarefa
+
+
 def nova_tarefa(descricao):
     nova_tarefa = {
         "descricao": descricao,
@@ -33,6 +28,12 @@ def nova_tarefa(descricao):
     }
     tarefas.append(nova_tarefa)
     print(f"tarefa {descricao} add com sucesso")
+
+
+def salvar_tarefas():
+    with open(ARQUIVOS_DADOS, "w") as file:
+        json.dump(tarefas, file, indent=4)
+    print(f"Tarefas salvas em {ARQUIVOS_DADOS}")
 
 
 def listar_tarefas():

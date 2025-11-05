@@ -18,8 +18,6 @@ def carregar_tarefas():
             print(f"Erro ao carregar dados : {ex}. Iniciando lista vazia")
             tarefas = []
 
-# Função para adicionar tarefa
-
 
 def nova_tarefa(descricao):
     nova_tarefa = {
@@ -47,47 +45,35 @@ def listar_tarefas():
 
 
 def concluir_tarefa(indice_str):
-    # 1. Tenta converter a entrada para um número inteiro
     try:
-        # Subtraímos 1 para transformar o número amigável (1, 2, 3...) no índice real da lista (0, 1, 2...)
+
         indice = int(indice_str) - 1
     except ValueError:
         print("Erro: Por favor, digite um NÚMERO válido para concluir a tarefa.")
         return
 
-    # 2. Verifica se a lista está vazia
     if not tarefas:
         print("A lista de tarefas está vazia.")
         return
 
-    # 3. Verifica se o índice está dentro dos limites da lista
-    # O índice deve ser maior ou igual a 0 E menor que o tamanho da lista (len(tarefas))
     if 0 <= indice < len(tarefas):
-
-        # Se for válido, acessa a tarefa
         tarefa = tarefas[indice]
-
-        # 4. Altera o status para True
         tarefa["concluida"] = True
         print(
             f"Tarefa '{tarefa['descricao']}' marcada como CONCLUÍDA com sucesso!")
     else:
-        # Se o índice não existir (ex: a lista tem 3 itens e o usuário digitou 5)
         print(f"Erro: Índice '{indice_str}' inválido. A tarefa não existe.")
 
 
 def remover_tarefa(indice_str):
-    # 1. Tenta converter a entrada do usuário para inteiro e ajusta para o índice da lista
     try:
         indice = int(indice_str) - 1
     except ValueError:
         print("Erro: Por favor, digite um NÚMERO válido para remover a tarefa.")
         return
 
-    # 2. Verifica se o índice está dentro dos limites da lista
     if 0 <= indice < len(tarefas):
 
-        # 3. Usa pop() para remover e obter a tarefa removida
         tarefa_removida = tarefas.pop(indice)
 
         print(f"Tarefa '{tarefa_removida['descricao']}' removida com sucesso!")
@@ -113,7 +99,6 @@ def menu():
         elif escolha == "2":
             listar_tarefas()
         elif escolha == "3":
-            # Primeiro, listamos as tarefas para o usuário ver os números
             listar_tarefas()
 
             if tarefas:  # Só pede input se houver tarefas
